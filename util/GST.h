@@ -109,7 +109,7 @@ public:
 
     GST(const test_suite gpu) {
         switch (gpu) {
-        cast A10:
+        case A10:
             init_a10();
             break;
         case T4:
