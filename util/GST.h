@@ -105,10 +105,13 @@ public:
 
     struct stress_test_args stress_tests[NUM_TESTS];
 
-    enum test_suite {T4, A100_40, A100_80, K80, M60, P40, P100, V100_16, V100_32, Generic};
+    enum test_suite {T4, A10, A100_40, A100_80, K80, M60, P40, P100, V100_16, V100_32, Generic};
 
     GST(const test_suite gpu) {
         switch (gpu) {
+        cast A10:
+            init_a10();
+            break;
         case T4:
         case P100: // same as T4
         case V100_16: // same as T4
@@ -358,6 +361,58 @@ private:
         stress_tests[4].m_arg = 18902;
         stress_tests[4].n_arg = 15904;
         stress_tests[4].k_arg = 200070;
+        stress_tests[4].ta_arg = 0;
+        stress_tests[4].tb_arg = 1;
+        stress_tests[4].B_arg = 0;
+    }
+
+    void init_a10() {
+        stress_tests[0].test_name = "FP16";
+        stress_tests[0].test_state = 0;
+        stress_tests[0].P_arg = "hsh";
+        stress_tests[0].m_arg = 31864/2;
+        stress_tests[0].n_arg = 38648/2;
+        stress_tests[0].k_arg = 88304/2;
+        stress_tests[0].ta_arg = 0;
+        stress_tests[0].tb_arg = 1;
+        stress_tests[0].B_arg = 0;
+
+        stress_tests[1].test_name = "C32";
+        stress_tests[1].test_state = 0;
+        stress_tests[1].P_arg = "ccc";
+        stress_tests[1].m_arg = 11432/2;
+        stress_tests[1].n_arg = 16424/2;
+        stress_tests[1].k_arg = 61000/2;
+        stress_tests[1].ta_arg = 0;
+        stress_tests[1].tb_arg = 1;
+        stress_tests[1].B_arg = 0;
+
+        stress_tests[2].test_name = "FP32";
+        stress_tests[2].test_state = 0;
+        stress_tests[2].P_arg = "hhh";
+        stress_tests[2].m_arg = 16064/2;
+        stress_tests[2].n_arg = 20608/2;
+        stress_tests[2].k_arg = 192750/2;
+        stress_tests[2].ta_arg = 0;
+        stress_tests[2].tb_arg = 1;
+        stress_tests[2].B_arg = 0;
+
+        stress_tests[3].test_name = "FP64";
+        stress_tests[3].test_state = 0;
+        stress_tests[3].P_arg = "zzz";
+        stress_tests[3].m_arg = 12016/2;
+        stress_tests[3].n_arg = 9012/2;
+        stress_tests[3].k_arg = 40085/2;
+        stress_tests[3].ta_arg = 0;
+        stress_tests[3].tb_arg = 1;
+        stress_tests[3].B_arg = 0;
+
+        stress_tests[4].test_name = "FP32";
+        stress_tests[4].test_state = 0;
+        stress_tests[4].P_arg = "hss";
+        stress_tests[4].m_arg = 18902/2;
+        stress_tests[4].n_arg = 15904/2;
+        stress_tests[4].k_arg = 200070/2;
         stress_tests[4].ta_arg = 0;
         stress_tests[4].tb_arg = 1;
         stress_tests[4].B_arg = 0;

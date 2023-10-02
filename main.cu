@@ -622,6 +622,12 @@ int main(int argc, char *argv[]) {
   string gpu_name(devprops[0].name);
   
   while (true) {
+     if (gpu_name.find("A10-", 0) != string::npos) {
+        cout << "Initilizing A10 vGPU based test suite" << endl;
+        gst = GST(GST::A10);
+        memgb = 16;
+        break;
+    }
     if (gpu_name.find("A100", 0) != string::npos) {
 
         if (gpumem > 40) {
